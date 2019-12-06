@@ -1,0 +1,13 @@
+@import '../styles/media-queries.css';
+@import '../assets/scss/helpers';
+
+.root {
+  box-sizing: border-box;
+  max-width: $layout-width;
+  padding: 0 1.5em;
+  margin: 0 auto;
+
+  @media (--media-min-small) {
+    padding: 2em;
+  }
+}

@@ -1,0 +1,82 @@
+@import '../styles/media-queries.css';
+@import '../assets/scss/_helpers.scss';
+
+.root {
+  position: relative;
+  z-index: 100;
+}
+
+.wrapper {
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: $layout-width;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.branding {
+  grid-column: span 2;
+  font-size: inherit;
+  margin: 0;
+  flex: 1;
+
+  & a {
+    display: inline-block;
+    padding: 0.5em;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.toggleNavButton {
+  display: none;
+  appearance: none;
+  font-size: 25px;
+  border: none;
+  background: none;
+  margin: 0;
+  padding: calc(14 / 17 / 2 * 1rem);
+  outline: none;
+
+
+  & svg {
+    display: block;
+  }
+
+}
+
+.nav {
+  // display: none;
+  grid-column-start: 8;
+  grid-column-end: none;
+
+  & ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+  }
+
+  & ul li {}
+
+  & ul li:first-child {
+    margin-left: -0.5rem;
+  }
+
+  & ul li a {
+    display: inline-block;
+    color: inherit;
+    font-weight: $header-menu-font-weight;
+    margin: 0.5rem;
+    text-decoration: none;
+
+  }
+
+  .active {
+    border-bottom: 2px solid $color-primary;
+  }
+}

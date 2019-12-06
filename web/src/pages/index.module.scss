@@ -1,0 +1,170 @@
+@import '../assets/scss/helpers';
+
+$section-spacing: 5rem;
+$section-hero: 6rem;
+
+.hero {
+  display: grid;
+  grid-row-gap: $section-hero;
+  padding-top: $section-hero / 1.5;
+  grid-template-columns: repeat(12, 1fr);
+
+  .title {
+    @include h1;
+    margin-top: 0;
+    grid-column: span 6;
+  }
+
+  .body {
+    @include body;
+    grid-column-end: none;
+    grid-column-start: 8;
+  }
+
+  .image {
+    grid-column: span 12;
+  }
+}
+
+.about {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  margin: $section-spacing 0;
+
+  .leftContent,
+  .rightContent {
+    grid-column: span 6;
+
+    .image {
+      margin-top: $section-spacing;
+    }
+  }
+
+  .leftContent {
+    .title {
+      margin: 0;
+    }
+  }
+
+  .rightContent {
+    grid-column-start: 8;
+    grid-column-end: none;
+  }
+
+  .features {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+
+    .roundedIcon {
+      position: relative;
+      border-radius: 300px;
+      width: 56px;
+      height: 56px;
+      background: #FEF4E6;
+      color: $color-primary;
+
+      svg {
+        position: absolute;
+        left: 50%;
+        top: calc(50% - 2px);
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    li {
+      margin-bottom: 3.5em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .image {
+      margin-top: 0;
+      width: 48px;
+      height: 48px;
+    }
+
+    h4,
+    .title {
+      @include h5;
+      margin-top: 1rem;
+    }
+
+    p {
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.partners {
+
+  .grid {
+    margin: 2rem 0 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+  }
+
+  .item {
+    margin: 0;
+    padding: 1rem;
+    background: $color-white;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.19);
+    text-align: center;
+    border-radius: 3px;
+
+    h5 {
+      @include h6;
+      margin-top: 1.5rem;
+    }
+
+    small {
+      @include body-s;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    a {
+      display: block;
+      margin-top: 0.5rem;
+      text-decoration: none;
+    }
+
+    .imageWrapper {
+      max-height: 250px;
+      overflow: hidden;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    ul,
+    li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .social {
+      margin: 1.5rem 0 0 0;
+      border-top: 1px solid $color-border;
+      padding: 0.5rem 0 0 0;
+
+      li {
+        padding: 0;
+        display: inline-block;
+        margin: 0 0.25rem;
+
+        a {
+          color: $text-dark;
+          display: block;
+        }
+      }
+    }
+  }
+}

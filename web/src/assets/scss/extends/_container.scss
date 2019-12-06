@@ -1,0 +1,60 @@
+%container,
+%container-narrow {
+  @include clear-top-margin;
+}
+
+%container {
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @include breakpoint-lg {
+    max-width: $layout-breakpoint-lg;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+%container-narrow,
+.container-narrow {
+  lost-center: $content-width;
+
+  @include breakpoint-lg {
+    lost-center: $content-width;
+  }
+}
+
+%section {
+  @include interpolate((padding-top, padding-bottom), 48px, 120px);
+  overflow: hidden;
+  @include clear-top-margin;
+  max-width: 100%;
+
+  &>div {
+    padding: 0 1rem;
+  }
+
+
+  &+& {
+    border-top: 0;
+  }
+
+}
+
+%section-narrow {
+  @extend %section,
+  %container-narrow;
+  max-width: $content-width;
+}
+
+%section-heading {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+  }
+}
