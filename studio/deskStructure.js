@@ -1,16 +1,7 @@
 import S from "@sanity/desk-tool/structure-builder";
-import { MdBusiness, MdSettings } from "react-icons/md";
-import { FaFile } from "react-icons/fa";
+import { MdBusiness, MdSettings, MdHome } from "react-icons/md";
 
-const hiddenTypes = [
-  "category",
-  "companyInfo",
-  "page",
-  "person",
-  "post",
-  "project",
-  "siteSettings"
-];
+const hiddenTypes = ["category", "companyInfo", "siteSettings", "homepage"];
 
 export default () =>
   S.list()
@@ -34,5 +25,15 @@ export default () =>
             .documentId("companyInfo")
         )
         .icon(MdBusiness),
+      S.listItem()
+        .title("Homepage")
+        .child(
+          S.editor()
+            .id("homepage")
+            .title("Homepage")
+            .schemaType("homepage")
+            .documentId("homepage")
+        )
+        .icon(MdHome),
       ...S.documentTypeListItems().filter(listItem => !hiddenTypes.includes(listItem.getId()))
     ]);

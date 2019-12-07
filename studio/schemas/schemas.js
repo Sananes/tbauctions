@@ -8,8 +8,11 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 import blockContent from "./blockContent";
 import blockText from "./blockText";
 import companyInfo from "./companyInfo";
+import homepage from "./pages/homepage";
 import figure from "./figure";
 import siteSettings from "./siteSettings";
+import list from "./objects/list";
+import brands from "./objects/brands";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -22,7 +25,10 @@ export default createSchema({
     // in the studio.
     blockContent,
     blockText,
+    list,
+    homepage,
     companyInfo,
+    brands,
     figure,
     siteSettings
 

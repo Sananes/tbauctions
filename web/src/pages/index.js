@@ -9,6 +9,7 @@ import styles from './index.module.scss'
 import logo from '../assets/images/tbauctions.svg'
 import Img from 'gatsby-image'
 import Icon from '../components/icons'
+import BlockText from '../components/block-text'
 
 export const query = graphql`
   query IndexPageQuery {
@@ -17,6 +18,56 @@ export const query = graphql`
       description
       keywords
     }
+    home: sanityHomepage {
+      _rawAboutBody(resolveReferences: { maxDepth: 10 })
+      _rawHeroBody
+      heroImage {
+        alt
+        asset {
+          fluid(maxWidth: 1024) {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+      aboutImage {
+        alt
+        asset {
+          fluid(maxWidth: 500) {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+      aboutList {
+        _rawBody
+        image {
+          asset {
+            fluid(maxWidth: 500) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        title
+      }
+      aboutTitle
+      brandsList {
+        image {
+          asset {
+            fluid(maxWidth: 500) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        instagram
+        market
+        linkedin
+        name
+        twitter
+        website
+      }
+      heroTitle
+      brandsTitle
+    }
+
     hero: file(relativePath: { eq: "hero.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1024) {
@@ -46,66 +97,44 @@ const IndexPage = props => {
   }
 
   const site = (data || {}).site || []
+  const home = (data || {}).home || []
 
   return (
     <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container>
         <section className={styles.hero}>
-          <h1 className={styles.title}>“Auctioning is the way to buy and sell for the future”</h1>
-          <p className={styles.body}>
-            We are <strong>350 people</strong> with a passion for value and auctions. Auctions are
-            completely in the now and the way to buy and sell for the future. With auctioning,
-            everything of value finds the best way.
-          </p>
-          <Img fluid={data.hero.childImageSharp.fluid} className={styles.image} />
+          <h1 className={styles.title}>{home.heroTitle}</h1>
+          <div className={styles.body}>
+            <BlockText blocks={home._rawHeroBody} />
+          </div>
+          <Img fluid={home.heroImage.asset.fluid} className={styles.image} />
         </section>
 
         <section className={styles.about}>
           <div className={styles.leftContent}>
-            <h3 className={styles.title}>About us</h3>
-            <p className={styles.body}>
-              We are 350 people with a passion for value and auctions. Auctions are completely in
-              the now and the way to buy and sell for the future. With aunctioning, everything of
-              value finds the best way.
-            </p>
-            <Img fluid={data.about.childImageSharp.fluid} className={styles.image} />
+            <h3 className={styles.title}>{home.aboutTitle}</h3>
+            <div className={styles.body}>
+              <BlockText blocks={home._rawAboutBody} />
+            </div>
+            <Img fluid={home.aboutImage.asset.fluid} className={styles.image} />
           </div>
 
           <div className={styles.rightContent}>
             <ul className={styles.features}>
-              <li>
-                <div className={styles.roundedIcon}>
-                  <Icon symbol="auction" />
-                </div>
-                <h4 className={styles.title}>Leading online auction</h4>
-                <p>
-                  TBAuctions is Europe’s leading online auction house. With 350 employees, buyers
-                  and sellers all over the world, over 6 million webvisits per month and 7.400
-                  auctions per year.
-                </p>
-              </li>
-              <li>
-                <div className={styles.roundedIcon}>
-                  <Icon symbol="sustainable" />
-                </div>
-                <h4>Sustainable consumption</h4>
-                <p>
-                  Auctioning stimulates re-utilization and extends the life of goods And thus,
-                  contributes to more sustainable consumption. It increases transparency and shows
-                  the right market value of a good.
-                </p>
-              </li>
-              <li>
-                <div className={styles.roundedIcon}>
-                  <Icon symbol="accessible" />
-                </div>
-                <h4>Accessible</h4>
-                <p>
-                  It makes world trade accessible to everyone, buyer and seller. With auctioning,
-                  everything of value finds the best way.
-                </p>
-              </li>
+              {home.aboutList.map((item, index) => (
+                <li key={index}>
+                  <div className={styles.roundedIcon}>
+                    <Icon
+                      symbol={
+                        (index === 0 && 'auction') || (index === 1 && 'sustainable') || 'accessible'
+                      }
+                    />
+                  </div>
+                  <h4 className={styles.title}>{item.title}</h4>
+                  <BlockText blocks={item._rawBody} />
+                </li>
+              ))}
             </ul>
           </div>
         </section>
@@ -113,40 +142,47 @@ const IndexPage = props => {
         <section className={styles.partners}>
           <div className={styles.pageTitle}>
             <h3>
-              Partners of <img src={logo} className={styles.image} />
+              {home.brandsTitle} <img src={logo} className={styles.image} />
             </h3>
             <ul className={styles.grid}>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(item => (
-                <li className={styles.item}>
-                  <div className={styles.imageWrapper}>
-                    <Img fluid={data.hero.childImageSharp.fluid} className={styles.image} />
-                  </div>
-                  <div className={styles.details}>
-                    <h5>BVA Auctions</h5>
-                    <small>Consumer &amp; Small Business</small>
-                    <a href="#">www.bvaauctions.com</a>
-                  </div>
-                  <div className={styles.social}>
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <Icon symbol="facebook" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <Icon symbol="instagram" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <Icon symbol="twitter" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              ))}
+              {home.brandsList &&
+                home.brandsList.map(item => (
+                  <li className={styles.item}>
+                    <div className={styles.imageWrapper}>
+                      {item.image && (
+                        <Img
+                          fluid={item.image.asset.fluid}
+                          alt={item.name || item.image.alt}
+                          className={styles.image}
+                        />
+                      )}
+                    </div>
+                    <div className={styles.details}>
+                      <h5>{item.name}</h5>
+                      {item.market && <small>{item.market}</small>}
+                      {item.website && <a href={item.website}>{item.website}</a>}
+                    </div>
+                    <div className={styles.social}>
+                      <ul>
+                        <li>
+                          <a href="#">
+                            <Icon symbol="facebook" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <Icon symbol="instagram" />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <Icon symbol="twitter" />
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                ))}
             </ul>
           </div>
         </section>
