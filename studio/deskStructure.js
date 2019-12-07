@@ -1,7 +1,7 @@
 import S from "@sanity/desk-tool/structure-builder";
 import { MdBusiness, MdSettings, MdHome } from "react-icons/md";
 
-const hiddenTypes = ["category", "companyInfo", "siteSettings", "homepage"];
+const hiddenTypes = ["category", "companyInfo", "siteSettings", "homepage", "brands", "list"];
 
 export default () =>
   S.list()

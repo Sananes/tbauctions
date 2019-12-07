@@ -1,5 +1,5 @@
 export default {
-  title: "List item",
+  title: "Brands",
   name: "brands",
   type: "document",
   fieldsets: [{ name: "social", title: "Social" }],
