@@ -3,6 +3,7 @@
 $section-spacing: 5rem;
 $section-hero: 6rem;
 
+
 .hero {
   position: relative;
   display: grid;
@@ -90,7 +91,7 @@ $section-hero: 6rem;
 }
 
 .about {
-  margin: $section-spacing 0;
+  margin-top: $section-spacing;
 
   .features {
     list-style: none;
