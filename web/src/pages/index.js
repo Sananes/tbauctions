@@ -17,6 +17,14 @@ export const query = graphql`
       description
       keywords
     }
+    companyInfo: sanityCompanyInfo(_id: { regex: "/(drafts.|)companyInfo/" }) {
+      name
+      address1
+      address2
+      zipCode
+      city
+      country
+    }
     home: sanityHomepage {
       _rawAboutBody(resolveReferences: { maxDepth: 10 })
       _rawHeroBody
@@ -103,6 +111,7 @@ const IndexPage = props => {
   }
 
   const site = (data || {}).site || []
+  const companyInfo = (data || {}).companyInfo || []
   const home = (data || {}).home || []
 
   return (
@@ -205,10 +214,21 @@ const IndexPage = props => {
             <div className={styles.content}>
               <img src={logo} alt={site.title} />
               <address>
-                Overschiestraat 59 <br />
-                1062 XD Amsterdam
-                <br />
-                The Netherlands
+                {companyInfo && (
+                  <>
+                    {companyInfo.address1}
+                    <br />
+                    {companyInfo.address2 && (
+                      <span>
+                        {companyInfo.address2}
+                        <br />
+                      </span>
+                    )}
+                    {companyInfo.zipCode} {companyInfo.city}
+                    <br />
+                    {companyInfo.country && <span> {companyInfo.country}</span>}
+                  </>
+                )}
               </address>
               <ul>
                 <li className={styles.phone}>
