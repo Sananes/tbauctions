@@ -106,9 +106,7 @@ const IndexPage = props => {
         <section className={styles.hero}>
           <div className={styles.content}>
             <h1 className={styles.title}>{home.heroTitle}</h1>
-            <button className={styles.button}>
-              <Icon symbol="play" /> Watch video
-            </button>
+            <button className={styles.button}>Watch video</button>
             <div className={styles.body}>
               <BlockText blocks={home._rawHeroBody} />
             </div>
@@ -118,29 +116,38 @@ const IndexPage = props => {
         </section>
 
         <section className={styles.about}>
-          <h2 className={styles.sectionTitle}>{home.aboutTitle}</h2>
-          <ul className={styles.features}>
-            {home.aboutList.map((item, index) => (
-              <li key={index}>
-                <div className={styles.roundedIcon}>
-                  <Icon
-                    symbol={
-                      (index === 0 && 'auction') || (index === 1 && 'sustainable') || 'accessible'
-                    }
-                  />
-                </div>
-                <h4 className={styles.title}>{item.title}</h4>
-                <BlockText blocks={item._rawBody} />
-              </li>
-            ))}
-          </ul>
+          <div className={styles.leftContent}>
+            <h3 className={styles.title}>{home.aboutTitle}</h3>
+            <div className={styles.body}>
+              <BlockText blocks={home._rawAboutBody} />
+            </div>
+            <Img fluid={home.aboutImage.asset.fluid} className={styles.image} />
+          </div>
+
+          <div className={styles.rightContent}>
+            <ul className={styles.features}>
+              {home.aboutList.map((item, index) => (
+                <li key={index}>
+                  <div className={styles.roundedIcon}>
+                    <Icon
+                      symbol={
+                        (index === 0 && 'auction') || (index === 1 && 'sustainable') || 'accessible'
+                      }
+                    />
+                  </div>
+                  <h4 className={styles.title}>{item.title}</h4>
+                  <BlockText blocks={item._rawBody} />
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
 
         <section className={styles.partners}>
           <div className={styles.pageTitle}>
-            <h2 className={styles.sectionTitle}>
+            <h3>
               {home.brandsTitle} <img src={logo} className={styles.image} />
-            </h2>
+            </h3>
             <ul className={styles.grid}>
               {home.brandsList &&
                 home.brandsList.map(item => (

@@ -6,6 +6,7 @@ import AccessibleIcon from './accessible'
 import FacebookIcon from './facebook'
 import TwitterIcon from './twitter'
 import InstagramIcon from './instagram'
+import PlayIcon from './auction copy'
 
 function Icon(props) {
   switch (props.symbol) {
@@ -17,6 +18,8 @@ function Icon(props) {
       return <SustainableIcon />
     case 'accessible':
       return <AccessibleIcon />
+    case 'play':
+      return <PlayIcon />
     case 'facebook':
       return <FacebookIcon />
     case 'twitter':
