@@ -3,13 +3,15 @@
 $global-border-radius: 4px;
 
 // Colors
-$color-primary: #f29200;
+$color-primary: #F29102;
 $color-white: #fff;
 $color-border: #efefef;
+$color-bva: #006EB3;
+$color-trooswijk: #F29102;
 $color-border-darker: darken($color-border, 10%);
 $color-divider: $color-border;
 $color-backgroupnd: #fff;
-$color-hightlight-background: #f9f8f3;
+$color-hightlight-background: #FBFDFF;
 
 $text-dark: #1C2356;
 $text-subdued: $text-dark;
@@ -21,6 +23,8 @@ $text-light: #fff;
 $text-light-subdued: darken($text-light, 20%);
 $text-light-dimmed: darken($text-light, 40%);
 $text-light-muted: darken($text-light, 60%);
+
+$text-link: #002BFF;
 
 // Color: Typography
 $heading-color: $text-dark;
@@ -74,7 +78,7 @@ $font-size-body-s: 14px;
 $font-size-body-xs: 12px;
 $font-size-overline: 12px;
 $font-size-menu: 12px;
-$font-size-button: 16px;
+$font-size-button: $typographic-base-font-size;
 
 // Mobile type sizes
 $font-size-heading-1-mobile: 30px;
@@ -106,7 +110,7 @@ $layout-breakpoint-lg: 1200px;
 
 // Buttons
 $button-font-size: $font-size-button;
-$button-font-weight: 600;
+$button-font-weight: $font-weight-bold;
 $button-large-height: 56px;
 $button-medium-height: 48px;
 $button-small-height: 40px;

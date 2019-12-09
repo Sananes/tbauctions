@@ -13,6 +13,7 @@ body {
   /* Change default typefaces here */
   font-family: $typographic-font-family, serif;
   -webkit-font-smoothing: antialiased;
+  background-color: $color-hightlight-background;
   color: $text-color;
   font-size: $typographic-base-font-size-mobile;
 

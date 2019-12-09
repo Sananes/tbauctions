@@ -21,9 +21,9 @@ $section-hero: 6rem;
     @extend %button;
     margin-top: 1.5rem;
     display: inline-flex;
+    align-items: center;
 
     svg {
-      margin-top: -1px;
       margin-right: 8px;
     }
   }
@@ -333,5 +333,87 @@ $section-hero: 6rem;
         }
       }
     }
+  }
+}
+
+.careers {
+  margin: $section-spacing 0;
+
+  .sectionTitle {
+    margin-bottom: 3rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 24px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+  }
+
+  button {
+    @extend %button;
+    width: auto;
+    max-width: auto;
+    display: inline;
+
+    &.bva {
+      justify-self: flex-end;
+      background: $color-bva;
+    }
+
+    &.troostwijk {
+      justify-self: flex-start;
+    }
+  }
+}
+
+.contact {
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: $color-white;
+    box-shadow: -1px 9px 20px #F0F2F4;
+    border-radius: $global-border-radius;
+    overflow: hidden;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+  }
+
+  img {
+    margin-bottom: 2rem;
+  }
+
+  ul {
+    margin-top: 2rem;
+  }
+
+  ul,
+  li {
+    list-style: none;
+    padding: 0;
+
+    span {
+      color: $color-primary;
+      font-weight: $font-weight-medium;
+      margin-right: 4px;
+    }
+
+    a {
+      color: $text-link;
+    }
+  }
+
+  address {
+    font-style: normal;
   }
 }

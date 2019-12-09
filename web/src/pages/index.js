@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
@@ -69,6 +68,13 @@ export const query = graphql`
     }
 
     hero: file(relativePath: { eq: "hero.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1024) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    office: file(relativePath: { eq: "office.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1024) {
           ...GatsbyImageSharpFluid
@@ -181,6 +187,40 @@ const IndexPage = props => {
                   </li>
                 ))}
             </ul>
+          </div>
+        </section>
+        <section className={styles.careers}>
+          <h2 className={styles.sectionTitle}>Want to join us?</h2>
+          <div className={styles.grid}>
+            <button className={styles.bva}>Your career at BVA Auctions</button>
+            <button className={styles.troostwijk}>Your career at Troostwijk Auctions</button>
+          </div>
+        </section>
+
+        <section className={styles.contact}>
+          <div className={styles.grid}>
+            <div className={styles.image}>
+              <Img fluid={data.office.childImageSharp.fluid} />
+            </div>
+            <div className={styles.content}>
+              <img src={logo} alt={site.title} />
+              <address>
+                Overschiestraat 59 <br />
+                1062 XD Amsterdam
+                <br />
+                The Netherlands
+              </address>
+              <ul>
+                <li className={styles.phone}>
+                  <span>T</span>
+                  <a href="#">+31 20 66 66 500</a>
+                </li>
+                <li className={styles.email}>
+                  <span>E</span>
+                  <a href="#">info@tbauctions.com</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
       </Container>
